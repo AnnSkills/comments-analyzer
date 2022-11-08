@@ -74,3 +74,9 @@ end
 gem 'cssbundling-rails'
 
 gem 'byebug'
+
+gem 'capybara'
+
+gem 'nokogiri'
+
+gem 'selenium-webdriver'

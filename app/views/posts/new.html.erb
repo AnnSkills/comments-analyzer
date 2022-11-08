@@ -1,0 +1,9 @@
+<%= form_with(model: @post) do |form| %>
+  <div>
+    <%= form.label :url, 'Enter url for post', style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.submit 'Add for analytics', class: 'btn btn-primary btn-lg mt-2' %>
+  </div>
+<% end %>
