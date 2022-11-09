@@ -1,19 +1,7 @@
-require 'capybara'
-require 'capybara/poltergeist'
-
+require 'nokogiri'
+require 'net/http'
 class ParsingService
-  include Capybara::DSL
-  Capybara.default_driver = :poltergeist
-  Capybara.register_driver :poltergeist do |app|
-    options = { js_errors: false }
-    Capybara::Poltergeist::Driver.new(app, options)
-  end
-
-  def scrape
-    yield page
-  end
-
-  def self.scrape(&block)
-    new.scrape(&block)
-  end
+  uri  = URI("https://problogger.com/the-ultimate-guide-to-leaving-comments-on-blogs/")
+  body = Net::HTTP.get(uri)
+  document = Nokogiri::HTML(body)
 end
