@@ -2,9 +2,11 @@ require 'selenium-webdriver'
 require 'nokogiri'
 require 'capybara'
 
-BLOG  = "https://deadline.com/2022/11/netflix-sports-plans-rights-bidding-1235166831/"
-
 class ParsingService
+  def initialize(url)
+    @url = url
+  end
+
   def scrap_title
     take_document.css('title').text
   end
@@ -15,10 +17,10 @@ class ParsingService
     comments_list = take_document.css('#comment-list-wrapper')
     if comments_list.count > 0
       comments_list.each do |comment|
-        comments_table << comment.css('li > div > div.pmc-u-font-family-georgia > p').map(&:text)
+        comments_table.push(comment.css('li > div > div.pmc-u-font-family-georgia > p').map(&:text))
       end
     end
-
+    comments_table
   end
 
   private
@@ -37,7 +39,7 @@ class ParsingService
   def take_document
     browser = Capybara.current_session
     driver = browser.driver.browser
-    browser.visit(BLOG)
+    browser.visit(@url)
     Nokogiri::HTML(driver.page_source)
   end
 end
