@@ -1,0 +1,20 @@
+<h2>Post details</h2>
+<h3>Title: <%= @post.name %>></h3>
+<table class="table table-success table-striped">
+  <thead>
+  <tr>
+    <th scope="col">id</th>
+    <th scope="col">Text</th>
+    <th scope="col">Rating</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @post.comments.each do |comment| %>
+    <tr>
+      <th scope="row"><%= comment.id %></th>
+      <td><%= comment.text %></td>
+      <td><<%= comment.confidence %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -18,7 +18,7 @@ class RaringService
   end
 
   def rate_post
-    @comments.each {|comment| @sum += comment.confidence}
+    @sum = @comments.confidence.sum
     if @comments.size != 0
       rate = @sum / @comments.size
     else
