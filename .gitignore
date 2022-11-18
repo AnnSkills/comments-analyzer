@@ -8,6 +8,7 @@
 # Ignore bundler config.
 /.bundle
 
+/config/.api_key.rb
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
