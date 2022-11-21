@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def index
-    @comments = Comment.find(post_id: comments_params)
+    @comments = Comment.where(post_id: comments_params)
   end
 
   private

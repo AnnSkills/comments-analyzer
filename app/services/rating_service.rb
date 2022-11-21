@@ -16,12 +16,11 @@ class RaringService
   end
 
   def rate_post
-    @sum = @comments.confidence.sum
+    sum = @comments.confidence.sum
     if @comments.size != 0
-      rate = @sum / @comments.size
+      sum / @comments.size
     else
-      rate = 0
+      0
     end
-    rate
   end
 end
