@@ -2,8 +2,6 @@ class RaringService
   def initialize(sentiment, comments)
     @sentiment = sentiment
     @comments = comments
-    @comment_rate = rate_comment
-    @post_rate = rate_post
   end
 
   def rate_comment

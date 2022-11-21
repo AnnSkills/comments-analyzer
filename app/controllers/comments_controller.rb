@@ -6,6 +6,6 @@ class CommentsController < ApplicationController
   private
 
   def comments_params
-    params.require(:id)
+    params.require(:post_id)
   end
 end

@@ -3,7 +3,7 @@ class ScrapingService
     @post = post
   end
 
-  def scraping
+  def scrape
     @post.name = take_document.css('title').text
     comments_list = take_document.css('#comment-list-wrapper')
     if comments_list.count > 0
@@ -16,19 +16,14 @@ class ScrapingService
         @post.rating = rating.rate_post
       end
     end
-
   end
 
   private
 
   def take_document
     config
-    byebug
     browser = Capybara.current_session
-    puts browser
     driver = browser.driver.browser
-    byebug
-    puts driver
     browser.visit(@post.url)
     Nokogiri::HTML(driver.page_source)
   end

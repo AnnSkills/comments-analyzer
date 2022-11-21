@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(url: post_params[:url])
     if @post.save
-      ScrapingService.new(@post).scraping
+      ScrapingService.new(@post).scrape
       redirect_to posts_path, notice: 'Post by url was successfully created.'
     else
       format.html { render :new, status: :unprocessable_entity }
