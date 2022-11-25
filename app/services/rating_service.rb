@@ -1,4 +1,4 @@
-class RaringService
+class RatingService
   def initialize(sentiment, comments)
     @sentiment = sentiment
     @comments = comments
