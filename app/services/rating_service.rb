@@ -16,7 +16,7 @@ class RatingService
   end
 
   def rate_post
-    sum = @comments.confidence.sum
+    sum = @comments.rate.sum
     if @comments.size != 0
       sum / @comments.size
     else
