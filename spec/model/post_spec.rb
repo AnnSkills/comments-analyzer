@@ -13,17 +13,19 @@ describe Post do
   end
 
   it 'post should have url' do
-    expect(Post.new(@attributes.merge(url: ''))).to_not be_valid
+    post_without_url = Post.create(@attributes.merge(url: ''))
+    expect(post_without_url).to_not be_valid
   end
 
   it 'post should have name' do
-    expect(Post.new(@attributes.merge(name: ''))).to_not be_valid
+    post_without_name = Post.create(@attributes.merge(name: ''))
+    expect(post_without_name).to_not be_valid
   end
 
   it "should reject duplicate post url" do
-    Post.create!(@attributes)
-    user_with_duplicate_email = Post.new(@attributes)
-    expect(user_with_duplicate_email).to_not be_valid
+    post = Post.create(@attributes)
+    post_with_duplicate_url = Post.create(@attributes)
+    expect(post_with_duplicate_url.url).to_not equal(post.url)
   end
 
   it 'is not valid if the data is not filled' do
