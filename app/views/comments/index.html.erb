@@ -8,12 +8,14 @@
   </tr>
   </thead>
   <tbody>
-  <% @comments.each do |comment| %>
-    <tr>
-      <th scope="row"><%= comment.id %></th>
-      <td><%= comment.text %></td>
-      <td><<%= comment.confidence %></td>
-    </tr>
+  <% if @comments %>
+    <% @comments.each do |comment| %>
+      <tr>
+        <th scope="row"><%= comment.id %></th>
+        <td><%= comment.text %></td>
+        <td><<%= comment.rate %></td>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>

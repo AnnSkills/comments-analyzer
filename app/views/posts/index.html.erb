@@ -5,6 +5,7 @@
     <th scope="col">Name</th>
     <th scope="col">URL</th>
     <th scope="col">Rating</th>
+    <th scope="col">Comments</th>
   </tr>
   </thead>
   <tbody>
@@ -14,6 +15,7 @@
     <td><%= post.name %></td>
     <td><a href="<%= post.url %>"><%= post.url %></a></td>
     <td><%= post.rating %></td>
+    <td><%= link_to 'Comments', post_comments_url(post.id) %></td>
   </tr>
   <% end %>
   </tbody>

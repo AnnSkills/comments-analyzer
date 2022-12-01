@@ -4,18 +4,22 @@ class ScrapingService
   end
 
   def scrape
-    comments_list = take_document.css('#comment-list-wrapper')
+    comments_list = take_document.css('.comment')
     if comments_list.count > 0
       comments_list.each do |comment|
-        text = comment.css('li > div > div.pmc-u-font-family-georgia > p').map(&:text)
-        sentiment = RapidApiService.new(comment).sentiment_request
-        rating_service = RatingService.new(sentiment['sentiment'], comment)
-        comment_rate = rating_service.rate_comment
-        post_rate = rating_service.rate_post
-        Comment.create(text: text, post_id: @post.id, rate: comment_rate)
-        @post.update(name: take_document.css('title').text, rating: post_rate)
+        p comment.css('div.pmc-u-font-family-georgia > p')
+        text = comment.css('div.pmc-u-font-family-georgia > p').map(&:text)
+        sentiment = RapidApiService.new(text.first).sentiment_request
+        comment_rating_service = CommentRatingService.new(sentiment['sentiment'])
+        comment_rate = comment_rating_service.rate_comment
+        p comment_rate
+        Comment.create(text: text.first, post_id: @post.id, rate: comment_rate)
       end
     end
+    comments = Comment.where(post_id: @post.id)
+    post_rating_service = PostRatingService.new(comments)
+    post_rate = post_rating_service.rate_post
+    @post.update(name: take_document.css('title').text, rating: post_rate)
   end
 
   private

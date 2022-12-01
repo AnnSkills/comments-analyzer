@@ -30,8 +30,8 @@ development:
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
   #username: onliner
-  username: $db_username
-  password: $db_password
+  username: ann
+  password: 1234567
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -54,8 +54,8 @@ development:
 test:
   <<: *default
   database: onliner_test
-  username: $db_username
-  password: $db_password
+  username: ann
+  password: 1234567
   host: localhost
   port: 5432
 

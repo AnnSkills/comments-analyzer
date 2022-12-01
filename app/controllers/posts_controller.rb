@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(url: post_params[:url])
-    if @post.save
+    if !@post.save
       ScrapingService.new(@post).scrape
       redirect_to posts_path, notice: 'Post by url was successfully created.'
     else

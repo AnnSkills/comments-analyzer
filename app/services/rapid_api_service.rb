@@ -6,8 +6,8 @@ require 'json'
 class RapidApiService
   URL = URI('https://text-analysis12.p.rapidapi.com/sentiment-analysis/api/v1.1')
 
-  def initialize(comments)
-    @comments = comments
+  def initialize(comment)
+    @comment = comment
   end
 
   def sentiment_request
@@ -19,18 +19,18 @@ class RapidApiService
     request.body = {
       data: {
         language: 'english',
-        text: @comments
+        text: @comment
       }
     }.to_json
-    response = http.request(request)
+    response = @http.request(request)
     response
   end
 
   private
 
   def rapid_api_configuration
-    http = Net::HTTP.new(URL.host, URL.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+    @http = Net::HTTP.new(URL.host, URL.port)
+    @http.use_ssl = true
+    @http.verify_mode = OpenSSL::SSL::VERIFY_NONE
   end
 end
