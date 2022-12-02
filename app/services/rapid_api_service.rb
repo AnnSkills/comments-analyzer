@@ -14,16 +14,14 @@ class RapidApiService
     rapid_api_configuration
     request = Net::HTTP::Post.new(URL)
     request["content-type"] = 'application/json'
-    request["X-RapidAPI-Key"] = $rapid_api_key
-    request["X-RapidAPI-Host"] = $rapid_api_host
+    request["X-RapidAPI-Key"] = 'dd4dd5d1e3msh12fe9a9c9343181p1052cejsn4d9543962314'
+    request["X-RapidAPI-Host"] = 'text-analysis12.p.rapidapi.com'
     request.body = {
-      data: {
-        language: 'english',
-        text: @comment
-      }
+      language: 'english',
+      text: @comment
     }.to_json
     response = @http.request(request)
-    response
+    JSON.parse(response.read_body)['sentiment']
   end
 
   private
