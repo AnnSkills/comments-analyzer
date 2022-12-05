@@ -11,7 +11,5 @@ class PostRatingService
         sum += comment.rate
       end
     sum / @comments.size
-
-    sum
   end
 end
