@@ -6,12 +6,7 @@ class PostRatingService
   def rate_post
     return 0 if @comments.empty?
 
-    sum = 0
-      @comments.each do |comment|
-        sum += comment.rate
-      end
+    sum = @comments.sum(:rate)
     sum / @comments.size
-
-    sum
   end
 end

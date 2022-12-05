@@ -1,9 +1,9 @@
 <%= form_with(model: @post) do |form| %>
+<div class="form-group">
   <div>
-    <%= form.label :url, 'Enter url for post', style: "display: block" %>
-    <%= form.text_field :url %>
+    <%= form.label :url, 'Enter url for post', style: 'display: block' %>
+    <%= form.text_field :url, class: 'form-control', placeholder: 'URL' %>
   </div>
-  <div>
-    <%= form.submit 'Add for analytics', class: 'btn btn-primary btn-lg mt-2' %>
-  </div>
+</div>
+  <%= form.submit 'Add for analytics', class: 'btn btn-primary btn-lg mt-2 ml-5' %>
 <% end %>
