@@ -4,7 +4,7 @@ class PostRatingService
   end
 
   def rate_post
-    return 0 if @comments.empty?
+    return 0 if !!@comments
 
     sum = @comments.sum(:rate)
     sum / @comments.size
