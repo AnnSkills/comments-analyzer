@@ -17,11 +17,6 @@ describe Post do
     expect(post_without_url).to_not be_valid
   end
 
-  it 'post should have name' do
-    post_without_name = Post.create(@attributes.merge(name: ''))
-    expect(post_without_name).to_not be_valid
-  end
-
   it "should reject duplicate post url" do
     post = Post.create(@attributes)
     post_with_duplicate_url = Post.create(@attributes)
