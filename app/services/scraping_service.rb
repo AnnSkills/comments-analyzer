@@ -9,8 +9,7 @@ class ScrapingService
       comments_list.each do |comment|
         text = comment.css('div.pmc-u-font-family-georgia > p').map(&:text)
         compound = RapidApiService.new(text.first).sentiment_request
-        comment_rating_service = CommentRatingService.new(compound)
-        comment_rate = comment_rating_service.rate_comment
+        comment_rate = CommentRatingService.new(compound) * 100
         Comment.create(text: text.first, post: @post, rate: comment_rate)
       end
     end
