@@ -21,7 +21,7 @@ class RapidApiService
       text: @comment
     }.to_json
     response = @http.request(request)
-    JSON.parse(response.read_body)['sentiment']
+    JSON.parse(response.read_body)['aggregate_sentiment']['compound']
   end
 
   private
