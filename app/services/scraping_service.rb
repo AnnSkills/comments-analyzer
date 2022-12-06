@@ -8,11 +8,9 @@ class ScrapingService
     if comments_list.count > 0
       comments_list.each do |comment|
         text = comment.css('div.pmc-u-font-family-georgia > p').map(&:text)
-        sentiment = RapidApiService.new(text.first).sentiment_request
-        comment_rating_service = CommentRatingService.new(sentiment)
-        comment_rate = comment_rating_service.rate_comment
-        comment = Comment.create(text: text.first, post: @post, rate: comment_rate)
-        p comment.errors.full_messages
+        compound = RapidApiService.new(text.first).sentiment_request
+        comment_rate = CommentRatingService.new(compound) * 100
+        Comment.create(text: text.first, post: @post, rate: comment_rate)
       end
     end
     comments = Comment.where(post_id: @post.id)
