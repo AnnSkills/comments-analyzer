@@ -1,9 +1,16 @@
-<%= form_with(model: @post) do |form| %>
-<div class="form-group">
-  <div>
-    <%= form.label :url, 'Enter url for post', style: 'display: block' %>
-    <%= form.text_field :url, class: 'form-control', placeholder: 'URL' %>
+<div class="container">
+  <div class="cover">
+    <h1>Insert URL</h1>
+    <form  class="flex-form">
+      <%= form_with(model: @post) do |form| %>
+      <div class="form-group">
+        <div>
+          <%= form.label :url, 'Enter url for post' %>
+          <%= form.text_field :url, placeholder: 'URL' %>
+        </div>
+        <%= form.submit 'Add for analytics' %>
+      </div>
+      <% end %>
+    </form>
   </div>
 </div>
-  <%= form.submit 'Add for analytics', class: 'btn btn-primary btn-lg mt-2 ml-5' %>
-<% end %>
