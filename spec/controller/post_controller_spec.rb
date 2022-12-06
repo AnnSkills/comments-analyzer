@@ -1,19 +1,6 @@
 require 'rails_helper'
 
 describe PostsController, type: :controller do
-  describe 'GET index' do
-    it 'assigns @posts' do
-      post = Post.create
-      get :index
-      expect(assigns(:posts)).to eq([post])
-    end
-    it 'renders the index template' do
-      get :index
-      expect(response).to render_template('index')
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'GET new' do
     it 'should assing @post' do
       get :new
