@@ -14,10 +14,10 @@ class ScrapingService
       end
     end
     comments = Comment.where(post_id: @post.id)
-    if comments != nil
-    post_rating_service = PostRatingService.new(comments)
-    post_rate = post_rating_service.rate_post
-    @post.update(name: take_document.css('title').text, rating: post_rate)
+    if comments.present?
+      post_rating_service = PostRatingService.new(comments)
+      post_rate = post_rating_service.rate_post
+      @post.update(name: take_document.css('title').text, rating: post_rate)
     else
       @post.update(name: take_document.css('title').text, rating: 0)
     end
